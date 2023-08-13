@@ -3,7 +3,7 @@ from Config import Config
 from sentence_transformers import SentenceTransformer
 from diacritic_utils import replace_diacritics
 
-pinecone.init(api_key=Config.api_key, environment=Config.environment)
+pinecone.init(api_key=Config.pinecone_api_key, environment=Config.pinecone_environment)
 index = pinecone.Index("tub")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -15,7 +15,7 @@ def query(query):
 def upsert(texts):
     embeddings = model.encode(texts)
 
-    pinecone.init(api_key=Config.api_key, environment=Config.environment)
+    pinecone.init(api_key=Config.pinecone_api_key, environment=Config.pinecone_environment)
 
     index = pinecone.Index("tub")
 
