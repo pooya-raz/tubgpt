@@ -30,7 +30,7 @@ data = [];
 for sentence, embedding in zip(sentences, embeddings):
     id_with_diacritics = sentence.splitlines()[0]
     id = replace_diacritics(id_with_diacritics)
-    row = (id, embedding.tolist())
+    row = (id, embedding.tolist(),{'text': sentence})
     data.append(row)
 
 print(data)
