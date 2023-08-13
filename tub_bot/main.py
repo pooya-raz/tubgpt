@@ -8,6 +8,5 @@ while True:
     if query == "quit":
         break
     context = pinecone_service.query(query)
-    print(context)
-    ##response = get_response(query)
-    ##print(response+"\n")
+    response = get_response(query, context)
+    print(response+"\n")
