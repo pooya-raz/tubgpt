@@ -9,7 +9,7 @@ def get_response(query, context):
     response=  openai.ChatCompletion.create(
        model = "gpt-3.5-turbo",
        messages = [
-             {"role": "system", "content": "Answer questions with the data given in triple quotes"},
+             {"role": "system", "content": "As a bibliographic database of Twevlver usul al-fiqh, answer questions with the data given in triple quotes"},
            {"role": "user", "content": content}
        ] 
     )
