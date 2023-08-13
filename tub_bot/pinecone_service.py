@@ -1,11 +1,11 @@
 import pinecone
-from Config import Config
+import config
 from sentence_transformers import SentenceTransformer
 from diacritic_utils import replace_diacritics
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false" #Disable parallelism in transformers otherwise it will throw a warning
-pinecone.init(api_key=Config.pinecone_api_key, environment=Config.pinecone_environment)
+pinecone.init(api_key=config.pinecone_api_key, environment=config.pinecone_environment)
 index = pinecone.Index("tub")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -16,7 +16,7 @@ def query(query):
 def upsert(texts):
     embeddings = model.encode(texts)
 
-    pinecone.init(api_key=Config.pinecone_api_key, environment=Config.pinecone_environment)
+    pinecone.init(api_key=config.pinecone_api_key, environment=config.pinecone_environment)
 
     index = pinecone.Index("tub")
 

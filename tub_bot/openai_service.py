@@ -1,7 +1,7 @@
 import openai
-from Config import Config
+import config
 
-openai.api_key = Config.openapi_key
+openai.api_key = config.openapi_key
 
 def get_response(query, context):
     tripleQuote = '"""'
