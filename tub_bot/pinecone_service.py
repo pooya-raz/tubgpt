@@ -2,6 +2,7 @@ import pinecone
 import config
 from sentence_transformers import SentenceTransformer
 from diacritic_utils import replace_diacritics
+import data
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false" #Disable parallelism in transformers otherwise it will throw a warning
@@ -11,7 +12,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def query(query):
     xq = model.encode([query]).tolist()
-    result = index.query(xq, top_k=5, include_metadata=True)
+    result = index.query(xq, top_k=3, include_metadata=True)
     response = ""
     for match in result["matches"]:
         response += match["metadata"]["text"] + "\n"
@@ -33,3 +34,6 @@ def upsert(texts):
 
     print(data)
     index.upsert(data)
+
+# Sample code on how to update the database
+# upsert([data.text1, data.text2, data.text3])
