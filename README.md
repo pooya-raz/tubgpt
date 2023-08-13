@@ -2,8 +2,13 @@
 
 Integrates TUB data with ChatGPT.
 
-It uses sbert to create vectors for chunks of the TUB data, then uploads them to pinecone. Then it uses ChatGPT to generate responses to user input, and uses pinecone to find the closest TUB data chunk to the generated response.
+The flow is as follows:
 
+1. Generate embeddings of chunks of TUB data using SBERT.
+2. Upload embeddings to Pinecone for storage and retrieval.
+3. Leverage Pinecone to match of user queries with embeddings.
+4. Employ the resultant matches as prompts for ChatGPT's dynamic interactions.
+   
 ## Running the application
 1. Requires a config.py file in the tub_bot folder that contains API keys for pincone and openai.
 2. Install dependecies with poetry `poetry install`
