@@ -1,4 +1,6 @@
 from sentence_transformers import SentenceTransformer
+import pinecone
+from Config import Config
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -35,3 +37,5 @@ for sentence, embedding in zip(sentences, embeddings):
     print("Sentence:", sentence)
     print("Embedding:", embedding)
     print("")
+
+pinecone.init(api_key=Config.api_key, environment=Config.environment)
