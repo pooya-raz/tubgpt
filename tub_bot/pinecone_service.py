@@ -11,7 +11,11 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def query(query):
     xq = model.encode([query]).tolist()
-    return index.query(xq, top_k=5, include_metadata=True)["matches"][0]["metadata"]["text"]
+    result = index.query(xq, top_k=5, include_metadata=True)
+    response = ""
+    for match in result["matches"]:
+        response += match["metadata"]["text"] + "\n"
+    return response
 
 def upsert(texts):
     embeddings = model.encode(texts)
