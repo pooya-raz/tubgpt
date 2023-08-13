@@ -10,9 +10,9 @@ The flow is as follows:
 4. Employ the resultant matches as prompts for ChatGPT's dynamic interactions.
    
 ## Running the application
-1. Requires a config.py file in the tub_bot folder that contains API keys for pincone and openai.
+1. Requires a config.py file in the tub_bot folder that contains API keys for Pinecone and OpenAI.
 2. Install dependecies with poetry `poetry install`
-3. Will need to upload some test data to pinecone. See the comment in `pinecone_service.py`. Then run `poetry run python tub_bot/pinecone_service.py`
+3. Will need to upload some test data to Pinecone. See the comment in `pinecone_service.py`. Then run `poetry run python tub_bot/pinecone_service.py`
 4. Run the application with `poetry run python tub_bot/main.py`
 
 ## Running the tests
