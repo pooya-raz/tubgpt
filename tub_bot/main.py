@@ -2,9 +2,12 @@ from openai_service import get_response, extract_context
 import pinecone_service
 from terminal_colors import colors
 import json
+from tub_mediawiki_bot import searchTitle, searchAuthor
+
 
 def colorText(text):
     return colors.OKCYAN + text + colors.ENDC
+
 
 print(colorText("Hello, I'm TubBot 🤖. How can I help?"))
 while True:
@@ -12,8 +15,13 @@ while True:
     if query == "quit":
         break
     # context = pinecone_service.query(query)
-    #response = get_response(query, context)
-    search_keywords_json = json.loads(extract_context(query))
+    keywords: dict[str,str] = json.loads(extract_context(query))
+    context: str = ""
+    if "title" in keywords and keywords["title"] != None:
+        context += searchTitle(keywords["title"])
+    if "person" in keywords and keywords["person"] != None:
+        context += searchAuthor(keywords["person"], 'incategory: "Author"')
+    
+    response = get_response(query, context)
 
-    print(search_keywords_json)
-    #print(colorText(response) + "\n")
+    print(colorText(response) + "\n")
