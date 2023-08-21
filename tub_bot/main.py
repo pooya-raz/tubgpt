@@ -1,6 +1,7 @@
 from openai_service import get_response, extract_context
 import pinecone_service
 from terminal_colors import colors
+import json
 
 def colorText(text):
     return colors.OKCYAN + text + colors.ENDC
@@ -12,6 +13,7 @@ while True:
         break
     # context = pinecone_service.query(query)
     #response = get_response(query, context)
-    response = extract_context(query)
-    print(response)
+    search_keywords_json = json.loads(extract_context(query))
+
+    print(search_keywords_json)
     #print(colorText(response) + "\n")

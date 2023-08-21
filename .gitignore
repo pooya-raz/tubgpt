@@ -285,3 +285,6 @@ pyrightconfig.json
 
 # Private keys
 tub_bot/Config.py
+
+# Api Cache
+apicache-py3/
