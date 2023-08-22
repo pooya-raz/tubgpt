@@ -15,7 +15,7 @@ while True:
     if query == "quit":
         break
     # context = pinecone_service.query(query)
-    keywords: dict[str,str] = json.loads(extract_context(query))
+    keywords: dict[str, str] = json.loads(extract_context(query))
     context: str = ""
     if "title" in keywords and keywords["title"] != None:
         context += searchTitle(keywords["title"])

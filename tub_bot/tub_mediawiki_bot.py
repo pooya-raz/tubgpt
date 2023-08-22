@@ -3,31 +3,32 @@ import requests
 from pywikibot import family, pagegenerators, BaseSite
 import urllib.parse
 
-class Family(family.Family): 
 
-    name = 'tub'
+class Family(family.Family):
+    name = "tub"
     langs = {
-        'en-gb': '10.164.39.147:8080',
+        "en-gb": "10.164.39.147:8080",
     }
 
     def scriptpath(self, code):
         return {
-            'en-gb': '/tub',
+            "en-gb": "/tub",
         }[code]
 
     def protocol(self, code):
         return {
-            'en-gb': 'http',
+            "en-gb": "http",
         }[code]
 
 
-site = pywikibot.Site('en-gb', Family())
+site = pywikibot.Site("en-gb", Family())
 
-def searchAuthor(query:str, filter:str):
-    if query == "null" or query== "Unknown":
+
+def searchAuthor(query: str, filter: str):
+    if query == "null" or query == "Unknown":
         print("Query is null or unknown for author")
         return ""
-    query = 'intitle:"' + query + '" '+ filter
+    query = 'intitle:"' + query + '" ' + filter
 
     pages = site.search(query)
     if all(False for _ in pages):
@@ -35,9 +36,15 @@ def searchAuthor(query:str, filter:str):
     result = ""
     for page in pages:
         page = pywikibot.Page(site, page.title())
-        result +=page.title() + "\n" + page.text + "\n"
-        ask = urllib.parse.quote("[[Category:Title]][[Has author(s)::{}]]|sort=Sort title".format(page.title()))
-        url = "http://10.164.39.147:8080/tub/api.php?action=ask&format=json&query="+ ask
+        result += page.title() + "\n" + page.text + "\n"
+        ask = urllib.parse.quote(
+            "[[Category:Title]][[Has author(s)::{}]]|sort=Sort title".format(
+                page.title()
+            )
+        )
+        url = (
+            "http://10.164.39.147:8080/tub/api.php?action=ask&format=json&query=" + ask
+        )
         response = requests.get(url).json()
         books = "Works: \n"
         for _, value in response["query"]["results"].items():
@@ -45,11 +52,12 @@ def searchAuthor(query:str, filter:str):
         result = result + books + "\n\n"
     return result
 
+
 def searchTitle(query):
     query = 'intitle:"' + query + '" incategory:"Edited title"'
     pages = site.search(query)
     result = ""
     for page in pages:
         page = pywikibot.Page(site, page.title())
-        result +=page.title() + "\n" + page.text + "\n\n"
+        result += page.title() + "\n" + page.text + "\n\n"
     return result

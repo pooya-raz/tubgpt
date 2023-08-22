@@ -21,7 +21,7 @@ def extract_context(query):
     return response["choices"][0]["message"]["content"]
 
 
-def get_response(query:str, context:str):
+def get_response(query: str, context: str):
     content = tripleQuote + context + tripleQuote + query
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",

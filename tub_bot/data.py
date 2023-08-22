@@ -1,4 +1,3 @@
-
 text1 = """Statistics of books by type across the centuries
 
 This is a CSV file of the breakdown of all the data entries in the Twelver Usul Bibliography (TUB) by type of book and century. The data is broken down into the following categories:
@@ -16,7 +15,7 @@ Century (Hijri),Monograph,Treatise (risāla),Commentary (sharḥ),Gloss (ḥāsh
 1300 - 1399,60,108,30,29,4,1,5,2,24,0
 """
 
-text2 ="""Statistics by type of title
+text2 = """Statistics by type of title
 
 This is a CSV table of the breakdown of all the data entries in the Twelver Usul Bibliography (TUB) by type of title. The data is broken down into the following categories:
 
