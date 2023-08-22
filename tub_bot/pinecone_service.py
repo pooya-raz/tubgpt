@@ -2,7 +2,6 @@ import pinecone
 import config
 from sentence_transformers import SentenceTransformer
 from diacritic_utils import replace_diacritics
-import data
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false" #Disable parallelism in transformers otherwise it will throw a warning
