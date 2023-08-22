@@ -21,7 +21,10 @@ while True:
         context += searchTitle(keywords["title"])
     if "person" in keywords and keywords["person"] != None:
         context += searchAuthor(keywords["person"], 'incategory: "Author"')
-    
-    response = get_response(query, context)
 
+    if context == "":
+        print(colorText("No results found in TUB"))
+        continue
+
+    response = get_response(query, context)
     print(colorText(response) + "\n")

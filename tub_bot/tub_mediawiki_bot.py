@@ -24,12 +24,14 @@ class Family(family.Family):
 site = pywikibot.Site('en-gb', Family())
 
 def searchAuthor(query:str, filter:str):
-    if query == "null" or "Unkown":
-        return
-    query = 'intitle:"' + query + '"'+ filter
+    if query == "null" or query== "Unknown":
+        print("Query is null or unknown for author")
+        return ""
+    query = 'intitle:"' + query + '" '+ filter
+
     pages = site.search(query)
     if all(False for _ in pages):
-        print('No results found in TUB')
+        return ""
     result = ""
     for page in pages:
         page = pywikibot.Page(site, page.title())
@@ -41,7 +43,6 @@ def searchAuthor(query:str, filter:str):
         for _, value in response["query"]["results"].items():
             books += value["fulltext"] + "\n"
         result = result + books + "\n\n"
-    print(result)
     return result
 
 def searchTitle(query):
