@@ -6,7 +6,7 @@ openai.api_key = config.openapi_key
 tripleQuote = '"""'
 
 
-def extract_context(query):
+def extract_context(query:str) -> str:
     content = tripleQuote + query + tripleQuote
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -21,7 +21,7 @@ def extract_context(query):
     return response["choices"][0]["message"]["content"]
 
 
-def get_response(query: str, context: str):
+def get_response(query: str, context: str) -> str:
     content = tripleQuote + context + tripleQuote + query
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",

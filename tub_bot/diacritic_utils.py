@@ -1,4 +1,4 @@
-def replace_diacritics(text):
+def replace_diacritics(text:str) -> str:
     text = text.replace("ā", "a")
     text = text.replace("Ā", "A")
     text = text.replace("ī", "i")

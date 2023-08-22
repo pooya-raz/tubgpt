@@ -24,7 +24,7 @@ class Family(family.Family):
 site = pywikibot.Site("en-gb", Family())
 
 
-def searchAuthor(query: str, filter: str):
+def searchAuthor(query: str, filter: str) -> str:
     if query == "null" or query == "Unknown":
         print("Query is null or unknown for author")
         return ""
@@ -53,7 +53,7 @@ def searchAuthor(query: str, filter: str):
     return result
 
 
-def searchTitle(query):
+def searchTitle(query:str) -> str:
     query = 'intitle:"' + query + '" incategory:"Edited title"'
     pages = site.search(query)
     result = ""

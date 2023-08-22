@@ -13,6 +13,12 @@ pinecone-client = "^2.2.2"
 openai = "^0.27.8"
 pywikibot = "^8.3.1"
 
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+
+[tool.mypy]
+strict = true
+mypy_path = "tub_bot"
 
 [build-system]
 requires = ["poetry-core"]

@@ -9,7 +9,7 @@ pinecone.init(api_key=config.pinecone_api_key, environment=config.pinecone_envir
 index = pinecone.Index("tub")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-def query(query):
+def query(query:str) -> str:
     xq = model.encode([query]).tolist()
     result = index.query(xq, top_k=3, include_metadata=True)
     response = ""
@@ -17,7 +17,7 @@ def query(query):
         response += match["metadata"]["text"] + "\n"
     return response
 
-def upsert(texts):
+def upsert(texts:str) -> None:
     embeddings = model.encode(texts)
 
     pinecone.init(api_key=config.pinecone_api_key, environment=config.pinecone_environment)
@@ -31,7 +31,6 @@ def upsert(texts):
         row = (id, embedding.tolist(),{'text': text})
         data.append(row)
 
-    print(data)
     index.upsert(data)
 
 # Sample code on how to update the database

@@ -5,7 +5,7 @@ import json
 from tub_mediawiki_bot import searchTitle, searchAuthor
 
 
-def colorText(text):
+def colorText(text:str) -> str:
     return colors.OKCYAN + text + colors.ENDC
 
 
